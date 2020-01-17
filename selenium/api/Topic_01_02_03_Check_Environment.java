@@ -1,4 +1,4 @@
-package webdriver_api;
+package api;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_01_Check_Environment {
+public class Topic_01_02_03_Check_Environment {
     // Khai báo biến
 	private WebDriver driver;
 
