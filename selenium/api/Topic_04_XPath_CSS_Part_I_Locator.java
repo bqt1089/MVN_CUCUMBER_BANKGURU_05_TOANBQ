@@ -66,7 +66,7 @@ public class Topic_04_XPath_CSS_Part_I_Locator {
 	
 	@Test
 	public void TC_08_XPath() {
-    driver.findElement(By.xpath("//button[@id='send2']")).isDisplayed();
+	driver.findElement(By.xpath("//button[@id='send2']")).isDisplayed();
 	}
 
 	@AfterClass
