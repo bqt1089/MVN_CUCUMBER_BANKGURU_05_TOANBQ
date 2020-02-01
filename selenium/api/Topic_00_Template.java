@@ -19,11 +19,11 @@ public class Topic_00_Template {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("");
 	}
 
 	@Test
 	public void TC_01_() {
+	driver.get("");	
 		
 	}
 

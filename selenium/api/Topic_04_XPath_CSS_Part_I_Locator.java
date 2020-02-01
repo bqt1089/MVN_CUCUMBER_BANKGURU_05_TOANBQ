@@ -19,11 +19,11 @@ public class Topic_04_XPath_CSS_Part_I_Locator {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://www.facebook.com/");
 	}
 
 	@Test
 	public void TC_01_ID() throws Exception {
+	driver.get("https://www.facebook.com/");	
 	WebElement emailTextbox = driver.findElement(By.id("email"));
 	emailTextbox.clear();
 	emailTextbox.sendKeys("valsm1711@yahoo.com.vn");
