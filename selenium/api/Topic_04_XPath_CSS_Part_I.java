@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_04_XPath_CSS_Part_I_Locator {
+public class Topic_04_XPath_CSS_Part_I {
 	private WebDriver driver;
 
 	@BeforeClass
