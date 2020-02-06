@@ -15,15 +15,15 @@ import org.testng.annotations.Test;
 
 public class Topic_06_XPath_CSS_Part_III {
 	private WebDriver driver;
-	    By emailTextbox = By.id("email");
-	    By passwordTextbox = By.id("pass");
-	    By loginButton = By.id("send2");
+		By emailTextbox = By.id("email");
+		By passwordTextbox = By.id("pass");
+		By loginButton = By.id("send2");
 	    
 	    String email1 = "auto_test" + randomNumber() + "@hotmail.com"; 
 	    
 	public int randomNumber() {
-	    Random rand = new Random();
-	    return rand.nextInt(999999);
+		Random rand = new Random();
+		return rand.nextInt(999999);
     }    
 
 	@BeforeClass
@@ -36,7 +36,7 @@ public class Topic_06_XPath_CSS_Part_III {
 	@BeforeMethod
 	public void runForEarchTestMethod() throws Exception {
 		driver.get("http://live.demoguru99.com/");
-	    driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
 	} 
 	
 	@Test

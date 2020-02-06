@@ -15,9 +15,9 @@ import org.testng.annotations.Test;
 
 public class Topic_05_XPath_CSS_Part_II {
 	private WebDriver driver;
-	    By emailTextbox = By.id("email");
-	    By passwordTextbox = By.id("pass");
-	    By loginButton = By.id("send2");
+		By emailTextbox = By.id("email");
+		By passwordTextbox = By.id("pass");
+		By loginButton = By.id("send2");
 	        
 	@BeforeClass
 	public void beforeClass() {
@@ -29,7 +29,7 @@ public class Topic_05_XPath_CSS_Part_II {
 	@BeforeMethod
 	public void runForEarchTestMethod() throws Exception {
 		driver.get("http://live.demoguru99.com/");
-	    driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
 	}
 	
 	@Test

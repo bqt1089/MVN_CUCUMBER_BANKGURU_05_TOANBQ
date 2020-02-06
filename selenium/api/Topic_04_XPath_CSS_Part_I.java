@@ -23,50 +23,50 @@ public class Topic_04_XPath_CSS_Part_I {
 
 	@Test
 	public void TC_01_ID() throws Exception {
-	driver.get("https://www.facebook.com/");	
-	WebElement emailTextbox = driver.findElement(By.id("email"));
-	emailTextbox.clear();
-	emailTextbox.sendKeys("valsm1711@yahoo.com.vn");
-	emailTextbox.isDisplayed();
-	Thread.sleep(3000);
+		driver.get("https://www.facebook.com/");	
+		WebElement emailTextbox = driver.findElement(By.id("email"));
+		emailTextbox.clear();
+		emailTextbox.sendKeys("valsm1711@yahoo.com.vn");
+		emailTextbox.isDisplayed();
+		Thread.sleep(3000);
 	}
 
 	@Test
 	public void TC_02_Class() throws Exception {
-	driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
-	driver.findElement(By.className("validate-password")).sendKeys("123456");
-	Thread.sleep(3000);
+		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
+		driver.findElement(By.className("validate-password")).sendKeys("123456");
+		Thread.sleep(3000);
 	}
 
 	@Test
 	public void TC_03_Name() throws InterruptedException {
-	driver.findElement(By.name("login[username]")).sendKeys("thanh.ngovan@gmail.com");
-	Thread.sleep(3000);
+		driver.findElement(By.name("login[username]")).sendKeys("thanh.ngovan@gmail.com");
+		Thread.sleep(3000);
 	}
 	
 	@Test
 	public void TC_04_TagName() {
-	driver.findElement(By.tagName("a")).isDisplayed();
+		driver.findElement(By.tagName("a")).isDisplayed();
 	}
 	
 	@Test
 	public void TC_05_LinkText() {
-	driver.findElement(By.linkText("MY ACCOUNT")).isDisplayed();
+		driver.findElement(By.linkText("MY ACCOUNT")).isDisplayed();
 	}
 	
 	@Test
 	public void TC_06_PartialLinkText() {
-	driver.findElement(By.partialLinkText("MY")).isDisplayed();
+		driver.findElement(By.partialLinkText("MY")).isDisplayed();
 	}
 	
 	@Test
 	public void TC_07_CSS() {
-	driver.findElement(By.cssSelector("#send2")).isDisplayed();
+		driver.findElement(By.cssSelector("#send2")).isDisplayed();
 	}
 	
 	@Test
 	public void TC_08_XPath() {
-	driver.findElement(By.xpath("//button[@id='send2']")).isDisplayed();
+		driver.findElement(By.xpath("//button[@id='send2']")).isDisplayed();
 	}
 
 	@AfterClass
