@@ -34,51 +34,51 @@ public class Topic_05_XPath_CSS_Part_II {
 	
 	@Test
 	public void TC_01_LoginWithEmptyEmailAndPassword() {
-	    driver.findElement(emailTextbox).sendKeys("");
-	    driver.findElement(passwordTextbox).sendKeys("");
-	    driver.findElement(loginButton).click();
-	    Assert.assertEquals(driver.findElement(By.id("advice-required-entry-email")).getText(),"This is a required field.");
-	    Assert.assertEquals(driver.findElement(By.id("advice-required-entry-pass")).getText(),"This is a required field.");
+		driver.findElement(emailTextbox).sendKeys("");
+		driver.findElement(passwordTextbox).sendKeys("");
+		driver.findElement(loginButton).click();
+		Assert.assertEquals(driver.findElement(By.id("advice-required-entry-email")).getText(),"This is a required field.");
+		Assert.assertEquals(driver.findElement(By.id("advice-required-entry-pass")).getText(),"This is a required field.");
 	}
 
 	@Test
 	public void TC_02_LoginWithInvalidEmail() {
-	    driver.findElement(emailTextbox).sendKeys("121123123@1231231");
-	    driver.findElement(passwordTextbox).sendKeys("");
-	    driver.findElement(loginButton).click();
-	    Assert.assertEquals(driver.findElement(By.id("advice-validate-email-email")).getText(),"Please enter a valid email address. For example johndoe@domain.com.");
-	    Assert.assertEquals(driver.findElement(By.id("advice-required-entry-pass")).getText(),"This is a required field.");
+		driver.findElement(emailTextbox).sendKeys("121123123@1231231");
+		driver.findElement(passwordTextbox).sendKeys("");
+		driver.findElement(loginButton).click();
+		Assert.assertEquals(driver.findElement(By.id("advice-validate-email-email")).getText(),"Please enter a valid email address. For example johndoe@domain.com.");
+		Assert.assertEquals(driver.findElement(By.id("advice-required-entry-pass")).getText(),"This is a required field.");
 	}
 
 	@Test
 	public void TC_03_LoginWithPasswordLessThan6Characters() {
-	    driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
-	    driver.findElement(passwordTextbox).sendKeys("123");
-	    driver.findElement(loginButton).click();
-	    Assert.assertEquals(driver.findElement(By.id("advice-validate-password-pass")).getText(),"Please enter 6 or more characters without leading or trailing spaces."); 
+		driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
+		driver.findElement(passwordTextbox).sendKeys("123");
+		driver.findElement(loginButton).click();
+		Assert.assertEquals(driver.findElement(By.id("advice-validate-password-pass")).getText(),"Please enter 6 or more characters without leading or trailing spaces."); 
 	}
 	
 	@Test
 	public void TC_04_LoginWithIncorrectPassword() throws Exception {
-	    driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
-	    driver.findElement(passwordTextbox).sendKeys("123123123");
-	    driver.findElement(loginButton).click();
-	    Assert.assertEquals(driver.findElement(By.xpath("//ul[@class='messages']//span")).getText(),"Invalid login or password.");
+		driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
+		driver.findElement(passwordTextbox).sendKeys("123123123");
+		driver.findElement(loginButton).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//ul[@class='messages']//span")).getText(),"Invalid login or password.");
 	    Thread.sleep(3000);
 	}
 	
 	@Test
 	public void TC_05_LoginWithValidEmailAndPassword() {
-	    driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
-	    driver.findElement(passwordTextbox).sendKeys("123123");
-	    driver.findElement(loginButton).click();
-	    Assert.assertEquals(driver.findElement(By.xpath("//div[@class='page-title']//h1")).getText(),"MY DASHBOARD");
-	    Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello, Automation Testing!");	    
+		driver.findElement(emailTextbox).sendKeys("automation@gmail.com");
+		driver.findElement(passwordTextbox).sendKeys("123123");
+		driver.findElement(loginButton).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='page-title']//h1")).getText(),"MY DASHBOARD");
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello, Automation Testing!");	    
 	    
-	    String contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
-	    System.out.println("Contact = " + contactInfo);
-	    Assert.assertTrue(contactInfo.contains("Automation Testing"));
-	    Assert.assertTrue(contactInfo.contains("automation@gmail.com"));
+		String contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
+		System.out.println("Contact = " + contactInfo);
+		Assert.assertTrue(contactInfo.contains("Automation Testing"));
+		Assert.assertTrue(contactInfo.contains("automation@gmail.com"));
 	       
 	}
 
