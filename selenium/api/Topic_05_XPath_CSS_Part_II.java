@@ -1,11 +1,9 @@
 package api;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -64,7 +62,6 @@ public class Topic_05_XPath_CSS_Part_II {
 		driver.findElement(passwordTextbox).sendKeys("123123123");
 		driver.findElement(loginButton).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//ul[@class='messages']//span")).getText(),"Invalid login or password.");
-	    Thread.sleep(3000);
 	}
 	
 	@Test
@@ -79,7 +76,6 @@ public class Topic_05_XPath_CSS_Part_II {
 		System.out.println("Contact = " + contactInfo);
 		Assert.assertTrue(contactInfo.contains("Automation Testing"));
 		Assert.assertTrue(contactInfo.contains("automation@gmail.com"));
-	       
 	}
 
 	@AfterClass
