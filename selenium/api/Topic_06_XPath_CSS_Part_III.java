@@ -39,7 +39,7 @@ public class Topic_06_XPath_CSS_Part_III {
 	} 
 	
 	@Test
-	public void TC_06_CreatNewUser() {
+	public void TC_06_CreatNewUser() throws Exception {
 		driver.findElement(By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]")).click();
 		driver.findElement(By.id("firstname")).sendKeys("Ngo");
 		driver.findElement(By.id("middlename")).sendKeys("Van");
@@ -49,11 +49,12 @@ public class Topic_06_XPath_CSS_Part_III {
 		driver.findElement(By.id("confirmation")).sendKeys("123123123");
 		driver.findElement(By.xpath("//div[@class='buttons-set']//span[text()='Register']")).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//ul[@class='messages']//span")).getText(),"Thank you for registering with Main Website Store.");
-		
+		Thread.sleep(6000);
 		driver.findElement(By.xpath("//div[@class='account-cart-wrapper']//span[text()='Account']")).click();
 		driver.findElement(By.xpath("//a[text()='Log Out']")).click();
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='page']//p[@class='welcome-msg']")).getText(),"DEFAULT WELCOME MSG!");
-		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Newsletter']/ancestor::div[@class='footer-container']/preceding-sibling::div[@class='main-container col2-right-layout']//h2")).getText().contains("THIS IS DEMO SITE FOR"));
+		Thread.sleep(8000);
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/");
+		
 	}
 
 	@AfterClass

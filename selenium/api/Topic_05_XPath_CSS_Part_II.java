@@ -28,6 +28,7 @@ public class Topic_05_XPath_CSS_Part_II {
 	public void runForEarchTestMethod() throws Exception {
 		driver.get("http://live.demoguru99.com/");
 		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		Thread.sleep(3000);
 	}
 	
 	@Test
