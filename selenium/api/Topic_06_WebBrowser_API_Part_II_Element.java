@@ -12,20 +12,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Topic_08_WebBrowser_API_Element {
+public class Topic_06_WebBrowser_API_Part_II_Element {
 	private WebDriver driver;
 	By emailTextbox = By.id("mail");
-	By ageUnder18Radio = By.id("under_18");
+	By ageunder18Radio = By.id("under_18");
 	By educationTextArea = By.id("edu");
-	By jobRole01Dropdown = By.id("job1");
+	By jobrole01Dropdown = By.id("job1");
 	By developmentCheckbox = By.id("development");
-	By slider01Slider = By.id("slider-1");
+	By firstSlider = By.id("slider-1");
 	By passwordTextbox = By.id("password");
-	By radioButtonisDisabledRadio = By.id("radio-disabled");
-	By biographyTextarea = By.id("bio");
-	By jobRole02Dropdown = By.id("job2");
-	By checkboxIsDisabledCheckbox = By.id("check-disbaled");
-	By slider02Slider = By.id("slider-2");
+	By disabledRadio = By.id("radio-disabled");
+	By biographyTextArea = By.id("bio");
+	By jobrole02Dropdown = By.id("job2");
+	By disabledCheckbox = By.id("check-disbaled");
+	By secondSlider = By.id("slider-2");
 
 	@BeforeClass
 	public void beforeClass() {
@@ -41,53 +41,46 @@ public class Topic_08_WebBrowser_API_Element {
 
 	@Test
 	public void TC_01_Check_isDisplayed() {
-		
 		if (driver.findElement(emailTextbox).isDisplayed()) {
 			driver.findElement(emailTextbox).sendKeys("Automation Testing");
 		}
-		
 		if (driver.findElement(educationTextArea).isDisplayed()) {
 			driver.findElement(educationTextArea).sendKeys("Automation Testing");
-		}
-		
-		if (driver.findElement(ageUnder18Radio).isDisplayed()) {
-			driver.findElement(ageUnder18Radio).click();
+		}		
+		if (driver.findElement(ageunder18Radio).isDisplayed()) {
+			driver.findElement(ageunder18Radio).click();
 		}	
 	}
 
 	@Test
 	public void TC_02_Check_isEnabled() {	
-	
 		isElementEnabled(emailTextbox);
-		isElementEnabled(ageUnder18Radio);
+		isElementEnabled(ageunder18Radio);
 		isElementEnabled(educationTextArea);
-		isElementEnabled(jobRole01Dropdown);
+		isElementEnabled(jobrole01Dropdown);
 		isElementEnabled(developmentCheckbox);
-		isElementEnabled(slider01Slider);
+		isElementEnabled(firstSlider);
 		isElementEnabled(passwordTextbox);
-		isElementEnabled(radioButtonisDisabledRadio);
-		isElementEnabled(jobRole02Dropdown);
-		isElementEnabled(checkboxIsDisabledCheckbox);
-		isElementEnabled(slider02Slider);
+		isElementEnabled(disabledRadio);
+		isElementEnabled(biographyTextArea);
+		isElementEnabled(jobrole02Dropdown);
+		isElementEnabled(disabledCheckbox);
+		isElementEnabled(secondSlider);
 	}	
 
 	@Test
 	public void TC_03_CheckisSelected() {		
-		
-		if (driver.findElement(ageUnder18Radio).isEnabled()) {
-			driver.findElement(ageUnder18Radio).click();
-		}
-		
+		if (driver.findElement(ageunder18Radio).isEnabled()) {
+			driver.findElement(ageunder18Radio).click();
+		}	
 		if (driver.findElement(developmentCheckbox).isEnabled()) {
 			driver.findElement(developmentCheckbox).click();
 		}
-		isElenmentSlected(ageUnder18Radio);
-		isElenmentSlected(developmentCheckbox);
-		
+		isElenmentSlected(ageunder18Radio);
+		isElenmentSlected(developmentCheckbox);	
 		if (driver.findElement(developmentCheckbox).isSelected()) {
 			driver.findElement(By.id("development")).click();
-		}		
-		
+		}			
 		isElenmentSlected(developmentCheckbox);
 	}	
 

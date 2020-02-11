@@ -11,8 +11,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Topic_07_WebBrowser_API_Browser {
+public class Topic_06_WebBrowser_API_Part_I_Browser {
 	private WebDriver driver;
+	By createButton = By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]");
+	By myaccountLink = By.xpath("//div[@class='footer']//a[text()='My Account']");
 
 	@BeforeClass
 	public void beforeClass() {
@@ -24,26 +26,26 @@ public class Topic_07_WebBrowser_API_Browser {
 	@BeforeMethod
 	public void runForEarchTestMethod() {
 		driver.get("http://live.demoguru99.com/");
-		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		driver.findElement(myaccountLink).click();
 	}	
 
 	@Test
 	public void TC_01_Verify_URL() {
 	    Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/login/");
-	    driver.findElement(By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]")).click();
+	    driver.findElement(createButton).click();
 	    Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/create/");
 	}
 
 	@Test
 	public void TC_02_Verify_Title() {
 		Assert.assertEquals(driver.getTitle(), "Customer Login");
-		driver.findElement(By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]")).click();
+		driver.findElement(createButton).click();
 		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
 	}
 
 	@Test
 	public void TC_03_Navigate_Function() {
-		driver.findElement(By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]")).click();
+		driver.findElement(createButton).click();
 		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/create/");
 		driver.navigate().back();
 		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/login/");
@@ -54,7 +56,7 @@ public class Topic_07_WebBrowser_API_Browser {
 	@Test
 	public void TC_04_Get_Page_Source_Code() {
 		Assert.assertTrue(driver.getPageSource().contains("Login or Create an Account"));
-		driver.findElement(By.xpath("//div[@class='buttons-set']//span[contains(text(),'Create an Account')]")).click();
+		driver.findElement(createButton).click();
 		Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
 	}
 

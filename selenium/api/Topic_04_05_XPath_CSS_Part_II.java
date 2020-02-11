@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Topic_05_XPath_CSS_Part_II {
+public class Topic_04_05_XPath_CSS_Part_II {
 	private WebDriver driver;
 		By emailTextbox = By.id("email");
 		By passwordTextbox = By.id("pass");
