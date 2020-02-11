@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 public class Topic_07_Text_Area_Text_Box {
 	private WebDriver driver;
+	String userID;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -23,43 +24,24 @@ public class Topic_07_Text_Area_Text_Box {
 
 	@Test
 	public void TC_01_() {
-	    driver.get("");	
-
-	}
-
-	@Test
-	public void TC_02_() {
-
-	}
-
-	@Test
-	public void TC_03_() {
-		
-	}
-	
-	@Test
-	public void TC_04_() {
-		
-	}
-	
-	@Test
-	public void TC_05() {
-		
-	}
-	
-	@Test
-	public void TC_06() {
-		
-	}
-	
-	@Test
-	public void TC_07() {
-		
-	}
-	
-	@Test
-	public void TC_08() {
-
+	    driver.get("http://demo.guru99.com/v4/");
+	    driver.findElement(By.xpath("//input[@name='uid']")).sendKeys("mngr245459");
+	    driver.findElement(By.xpath("//input[@name='password']")).sendKeys("zejAvUd");
+	    Assert.assertEquals(driver.getCurrentUrl(), "http://demo.guru99.com/v4/manager/Managerhomepage.php");
+	    Assert.assertTrue(driver.findElement(By.xpath("//marquee[@class='heading3']")).getText().contains("Welcome To Manager's Page of Guru99 Bank"));
+	    driver.findElement(By.xpath("//a[text()='New Customer']")).click();
+	    driver.findElement(By.xpath("//input[@name='name']")).sendKeys("Selenium Online");
+	    driver.findElement(By.xpath("//input[@value='m'")).click();
+	    driver.findElement(By.xpath("//input[@name='dob'")).sendKeys("10/01/2000");
+	    driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys("123 Address");
+	    driver.findElement(By.xpath("//input[@value='city'")).sendKeys("Ho Chi Minh");
+	    driver.findElement(By.xpath("//input[@value='state'")).sendKeys("Thu Duc");
+	    driver.findElement(By.xpath("//input[@value='pinno'")).sendKeys("123456");
+	    driver.findElement(By.xpath("//input[@value='telephoneno'")).sendKeys("0123456987");
+	    driver.findElement(By.xpath("//input[@value='emailid'")).sendKeys("seleniumon98779@gmail.com");
+	    driver.findElement(By.xpath("//input[@value='password'")).sendKeys("");
+	    driver.findElement(By.xpath("")).sendKeys("123123");
+	  
 	}
 
 	@AfterClass
