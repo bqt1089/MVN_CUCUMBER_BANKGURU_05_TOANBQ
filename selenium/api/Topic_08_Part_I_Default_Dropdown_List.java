@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_08_Handle_Default_Dropdown_List {
+public class Topic_08_Part_I_Default_Dropdown_List {
 	WebDriver driver;
 	Select select;
 	String email = "cartoon" + randomNumber() + "@hotmail.com";
