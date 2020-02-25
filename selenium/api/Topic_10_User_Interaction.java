@@ -116,12 +116,19 @@ public class Topic_10_User_Interaction {
 	@Test
 	public void TC_06_Drag_And_Drop() {
 		driver.get("https://demos.telerik.com/kendo-ui/dragdrop/angular");
+		// Use "action.dragAndDrop()" to drag & drop
 		action.dragAndDrop(driver.findElement(By.xpath("//div[@id='draggable']")), driver.findElement(By.xpath("//div[@id='droptarget']"))).perform();
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='droptarget']")).getText(), "You did great!");
 	}
 	
 	@Test
 	public void TC_07_Drag_And_Drop_HTML5() {
+		driver.get("http://the-internet.herokuapp.com/drag_and_drop");
+		String sourceCss = "#column-a";
+		String targetCss = "#column-b";
+		String java_script = readFile(javascriptPath);
+		
+		
 
 	}
 	
