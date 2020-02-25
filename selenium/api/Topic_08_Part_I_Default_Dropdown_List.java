@@ -18,14 +18,30 @@ import org.testng.annotations.Test;
 public class Topic_08_Part_I_Default_Dropdown_List {
 	WebDriver driver;
 	Select select;
-	String email = "cartoon" + randomNumber() + "@hotmail.com";
-	String homePageURL = "https://demo.nopcommerce.com/";
-
+	String email, homePageURL;
+	By registerLink = By.xpath("//a[@class='ico-register']");
+	By maleRadio = By.xpath("//input[@id='gender-male']");
+	By firstNameTextbox = By.xpath("//input[@id='FirstName']");
+	By lastNameTextbox = By.xpath("//input[@id='LastName']");
+	By dayDropdown = By.name("DateOfBirthDay");
+	By monthDropdown = By.name("DateOfBirthMonth");
+	By yearDropdown = By.name("DateOfBirthYear");
+	By emailTextbox = By.id("Email");
+	By companyTextbox = By.id("Company");
+	By passTextbox = By.id("Password");
+	By passConfirmTextbox = By.id("ConfirmPassword");
+	By registerButton = By.id("register-button");
+	By continueButton = By.xpath("//input[@name='register-continue']");
+	By registrationText = By.xpath("//div[@class='result']");
+	
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		email = "cartoon" + randomNumber() + "@hotmail.com";
+		homePageURL = "https://demo.nopcommerce.com/";
+		
 		
 	}
 
@@ -74,39 +90,39 @@ public class Topic_08_Part_I_Default_Dropdown_List {
 	public void TC_02() {
 		driver.get("https://demo.nopcommerce.com/register");
 		
-		driver.findElement(By.xpath("//a[@class='ico-register']")).click();
+		driver.findElement(registerLink).click();
 		
-		driver.findElement(By.xpath("//input[@id='gender-male']")).click();
+		driver.findElement(maleRadio).click();
 		
-		driver.findElement(By.xpath("//input[@id='FirstName']")).sendKeys("Automation");
+		driver.findElement(firstNameTextbox).sendKeys("Automation");
 		
-		driver.findElement(By.xpath("//input[@id='FirstName']")).sendKeys("Test");
+		driver.findElement(lastNameTextbox).sendKeys("Test");
 		
-		select = new Select(driver.findElement(By.name("DateOfBirthDay")));
+		select = new Select(driver.findElement(dayDropdown));
 		select.selectByVisibleText("1");
 		Assert.assertEquals(select.getOptions().size(), 32);
 		
-		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+		select = new Select(driver.findElement(monthDropdown));
 		select.selectByVisibleText("May");
 		Assert.assertEquals(select.getOptions().size(), 13);
 		
-		select = new Select(driver.findElement(By.name("DateOfBirthYear")));
+		select = new Select(driver.findElement(yearDropdown));
 		select.selectByVisibleText("1980");
 		Assert.assertEquals(select.getOptions().size(), 112);
 		
-		driver.findElement(By.id("Email")).sendKeys(email);
+		driver.findElement(emailTextbox).sendKeys(email);
 		
-		driver.findElement(By.id("Email")).sendKeys("Gameloft");
+		driver.findElement(companyTextbox).sendKeys("Gameloft");
 		
-		driver.findElement(By.id("Password")).sendKeys("123123");
+		driver.findElement(passTextbox).sendKeys("123123");
 		
-		driver.findElement(By.id("ConfirmPassword")).sendKeys("123123");
+		driver.findElement(passConfirmTextbox).sendKeys("123123");
 		
-		driver.findElement(By.id("register-button")).click();
+		driver.findElement(registerButton).click();
 		
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='result']")).getText(), "Your registration completed");
+		Assert.assertEquals(driver.findElement(registrationText).getText(), "Your registration completed");
 		
-		driver.findElement(By.xpath("//input[@name='register-continue']")).click();
+		driver.findElement(continueButton).click();
 		
 		Assert.assertEquals(driver.getCurrentUrl(), homePageURL);
 	}

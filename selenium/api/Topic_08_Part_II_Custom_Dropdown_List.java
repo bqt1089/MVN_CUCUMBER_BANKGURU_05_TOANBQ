@@ -43,7 +43,7 @@ public class Topic_08_Part_II_Custom_Dropdown_List {
 	}
 
 	@Test
-	public void TC_02_() throws Exception {
+	public void TC_02() throws Exception {
 		driver.get("https://multiple-select.wenzhixin.net.cn/examples#basic.html");
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@src='templates/template.html?v=188&url=basic.html']")));
 		String parentXpath = "//div[@class='form-group row'][2]//button";

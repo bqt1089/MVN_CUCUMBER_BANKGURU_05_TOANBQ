@@ -13,21 +13,21 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Topic_07_Handle_Text_Area_Text_Box {
-	private WebDriver driver;
-	private String email, userID, password, loginPageURL;
-	private String name, dob, address, city, state, pin, phone, gender, customerID;
-	private String editAddress, editCity, editState, editPin, editPhone, editEmail;
-	private By nameTextbox = By.name("name");
-	private By genderTextbox = By.name("gender");
-	private By dobTextbox = By.name("dob");
-	private By addressTextArea = By.name("addr");
-	private By cityTextBox = By.name("city");
-	private By stateTextBox = By.name("state");
-	private By pinTextBox = By.name("pinno");
-	private By phoneTextBox = By.name("telephoneno");
-	private By emailTextBox = By.name("emailid");
-	private By passwordTextBox = By.name("password");
-	private By submitButton = By.name("sub");
+	WebDriver driver;
+	String email, userID, password, loginPageURL;
+	String name, dob, address, city, state, pin, phone, gender, customerID;
+	String editAddress, editCity, editState, editPin, editPhone, editEmail;
+	By nameTextbox = By.name("name");
+	By genderTextbox = By.name("gender");
+	By dobTextbox = By.name("dob");
+	By addressTextArea = By.name("addr");
+	By cityTextBox = By.name("city");
+	By stateTextBox = By.name("state");
+	By pinTextBox = By.name("pinno");
+	By phoneTextBox = By.name("telephoneno");
+	By emailTextBox = By.name("emailid");
+	By passwordTextBox = By.name("password");
+	By submitButton = By.name("sub");
 
 	@BeforeClass
 	public void beforeClass() {
