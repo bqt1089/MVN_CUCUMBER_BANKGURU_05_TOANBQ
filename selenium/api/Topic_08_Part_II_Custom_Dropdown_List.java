@@ -18,28 +18,24 @@ import org.testng.annotations.Test;
 
 public class Topic_08_Part_II_Custom_Dropdown_List {
 	WebDriver driver;
-	WebDriverWait waitExplicit;
+	WebDriverWait explicitWait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
-		waitExplicit = new WebDriverWait(driver, 5);
+		explicitWait = new WebDriverWait(driver, 10);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
 	@Test
 	public void TC_01() throws Exception {
-		Custom_Dropdown_List_One_Item("https://jqueryui.com/resources/demos/selectmenu/default.html", "//span[@id='number-button']", "//ul[@id='number-menu']/li", "19");
-		
-		Custom_Dropdown_List_One_Item("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding", "//ejs-dropdownlist[@id='games']", "//ul[@id='games_options']/li", "Football");
-		
-		Custom_Dropdown_List_One_Item("https://react.semantic-ui.com/maximize/dropdown-example-selection/", "//div[@role='listbox']", "//div[@role='option']/span", "Christian");
-		
-		Custom_Dropdown_List_One_Item("https://mikerodham.github.io/vue-dropdowns/", "//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li/a", "First Option");
-		
-		Custom_Dropdown_List_One_Item("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/", "//div[@role='alert']", "//div[@class='item']/span", "Bahrain");
+		Select__One_Item_In_Dropdown("https://jqueryui.com/resources/demos/selectmenu/default.html", "//span[@id='number-button']", "//ul[@id='number-menu']/li", "19");
+		Select__One_Item_In_Dropdown("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding", "//ejs-dropdownlist[@id='games']", "//ul[@id='games_options']/li", "Football");
+		Select__One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-selection/", "//div[@role='listbox']", "//div[@role='option']/span", "Christian");
+		Select__One_Item_In_Dropdown("https://mikerodham.github.io/vue-dropdowns/", "//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li/a", "First Option");
+		Select__One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/", "//div[@role='alert']", "//div[@class='item']/span", "Bahrain");
 	}
 
 	@Test
@@ -55,14 +51,15 @@ public class Topic_08_Part_II_Custom_Dropdown_List {
 		driver.switchTo().defaultContent();
 	}
 	
-	public void Custom_Dropdown_List_One_Item(String pageUrl, String parentXpath, String allItemXpath, String expectedValueItem) throws Exception {
+	public void Select__One_Item_In_Dropdown(String pageUrl, String parentXpath, String childXpath, String expectedItem) throws Exception {
 		driver.get(pageUrl);
 		driver.findElement(By.xpath(parentXpath)).click();
-		Thread.sleep(2000);
-		waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
-		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
+		List<WebElement> allItems = driver.findElements(By.xpath(childXpath));
+		System.out.println("Item number = " + allItems.size());
+		// Wait all items loaded successfully
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childXpath)));
 		for (WebElement childElement : allItems) {
-			if (childElement.getText().equals(expectedValueItem)) {
+			if (childElement.getText().equals(expectedItem)) {
 				if (childElement.isDisplayed()) {
 					childElement.click();
 				} else {					
@@ -70,7 +67,6 @@ public class Topic_08_Part_II_Custom_Dropdown_List {
 					Thread.sleep(1000);
 					js.executeScript("arguments[0].click();", childElement);
 				}
-				Thread.sleep(2000);
 				break;
 				}
 			}
@@ -78,7 +74,7 @@ public class Topic_08_Part_II_Custom_Dropdown_List {
 		
 	public void Custom_Dropdown_List_Multi_Item(String parentXpath, String allItemXpath, String[] expectedValueItem, String itemsSelectedXpath) {
 		driver.findElement(By.xpath(parentXpath)).click();
-		waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
 		for (WebElement childElement : allItems) {
 			for (String item : expectedValueItem) {

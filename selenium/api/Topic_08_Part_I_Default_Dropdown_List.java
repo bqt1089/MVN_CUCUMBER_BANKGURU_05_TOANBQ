@@ -33,6 +33,8 @@ public class Topic_08_Part_I_Default_Dropdown_List {
 	By registerButton = By.id("register-button");
 	By continueButton = By.xpath("//input[@name='register-continue']");
 	By registrationText = By.xpath("//div[@class='result']");
+	By myAccountLink = By.cssSelector(".ico-account");
+	By logOutLink = By.cssSelector(".ico-logout");
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -89,13 +91,9 @@ public class Topic_08_Part_I_Default_Dropdown_List {
 	@Test
 	public void TC_02() {
 		driver.get("https://demo.nopcommerce.com/register");
-		
 		driver.findElement(registerLink).click();
-		
 		driver.findElement(maleRadio).click();
-		
 		driver.findElement(firstNameTextbox).sendKeys("Automation");
-		
 		driver.findElement(lastNameTextbox).sendKeys("Test");
 		
 		select = new Select(driver.findElement(dayDropdown));
@@ -111,16 +109,16 @@ public class Topic_08_Part_I_Default_Dropdown_List {
 		Assert.assertEquals(select.getOptions().size(), 112);
 		
 		driver.findElement(emailTextbox).sendKeys(email);
-		
 		driver.findElement(companyTextbox).sendKeys("Gameloft");
-		
 		driver.findElement(passTextbox).sendKeys("123123");
-		
 		driver.findElement(passConfirmTextbox).sendKeys("123123");
-		
 		driver.findElement(registerButton).click();
 		
 		Assert.assertEquals(driver.findElement(registrationText).getText(), "Your registration completed");
+		
+		Assert.assertTrue(driver.findElement(myAccountLink).isDisplayed());
+		
+		Assert.assertTrue(driver.findElement(logOutLink).isDisplayed());
 		
 		driver.findElement(continueButton).click();
 		

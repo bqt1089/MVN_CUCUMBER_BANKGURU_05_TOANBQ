@@ -83,11 +83,6 @@ public class Topic_06_WebBrowser_API_Part_II_Element {
 		}			
 		isElenmentSlected(developmentCheckbox);
 	}	
-
-	@AfterClass
-	public void afterClass() {
-		driver.quit();
-	}
 	
 	public boolean isElenmentSlected(By by) {
 		WebElement element = driver.findElement(by);
@@ -109,5 +104,10 @@ public class Topic_06_WebBrowser_API_Part_II_Element {
 			System.out.println("Element ---- " + by + " ---- is disabled");
 			return false;
 		}
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		driver.quit();
 	}
 }

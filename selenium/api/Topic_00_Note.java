@@ -1,5 +1,8 @@
 
 // *Topic_08_Dropdown_List
+// Condition Statement: if / if-else / if-else-if / if-else-if-else / swtich-case
+// Loop Statement: for / while / do-while
+
 
 // *Topic_09_Button_Radio_Checkbox_Alert
 
