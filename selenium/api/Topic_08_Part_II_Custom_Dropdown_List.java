@@ -19,60 +19,63 @@ import org.testng.annotations.Test;
 public class Topic_08_Part_II_Custom_Dropdown_List {
 	WebDriver driver;
 	WebDriverWait explicitWait;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	JavascriptExecutor jsExecutor;
 
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
 		explicitWait = new WebDriverWait(driver, 10);
+		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
 	@Test
-	public void TC_01() throws Exception {
-		Select__One_Item_In_Dropdown("https://jqueryui.com/resources/demos/selectmenu/default.html", "//span[@id='number-button']", "//ul[@id='number-menu']/li", "19");
-		Select__One_Item_In_Dropdown("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding", "//ejs-dropdownlist[@id='games']", "//ul[@id='games_options']/li", "Football");
-		Select__One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-selection/", "//div[@role='listbox']", "//div[@role='option']/span", "Christian");
-		Select__One_Item_In_Dropdown("https://mikerodham.github.io/vue-dropdowns/", "//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li/a", "First Option");
-		Select__One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/", "//div[@role='alert']", "//div[@class='item']/span", "Bahrain");
+	public void TC_01_Select_One_Item_In_Dropdown() throws Exception {
+		Select_One_Item_In_Dropdown("https://jqueryui.com/resources/demos/selectmenu/default.html", "//span[@id='number-button']", "//ul[@id='number-menu']/li", "19");
+		Assert.assertTrue(isElementDisplayed("//span[@id='number-button']//span[@class='ui-selectmenu-text' and text()='19']"));
+		Select_One_Item_In_Dropdown("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding", "//ejs-dropdownlist[@id='games']", "//ul[@id='games_options']/li", "Football");
+		Assert.assertEquals(getTextByJS("select[name='games'] option"), "Football");
+		Select_One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-selection/", "//div[@role='listbox']", "//div[@role='option']/span", "Christian");
+		Assert.assertTrue(isElementDisplayed("//div[@class='text' and text()='Christian']"));
+		Select_One_Item_In_Dropdown("https://mikerodham.github.io/vue-dropdowns/", "//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li/a", "First Option");
+		Assert.assertTrue(isElementDisplayed("//li[@class='dropdown-toggle' and contains(text(),'First Option')]"));
+		Select_One_Item_In_Dropdown("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/", "//div[@role='alert']", "//div[@class='item']/span", "Bahrain");
+		Assert.assertTrue(isElementDisplayed("//div[@class='text' and text()='Bahrain']"));
 	}
 
 	@Test
-	public void TC_02() throws Exception {
+	public void TC_02_Select_Multi_Item_In_Dropdown() throws Exception {
 		driver.get("https://multiple-select.wenzhixin.net.cn/examples#basic.html");
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@src='templates/template.html?v=188&url=basic.html']")));
 		String parentXpath = "//div[@class='form-group row'][2]//button";
 		String dropdownXpath = "//div[@class='form-group row'][2]//input[@data-name='selectItem']/following-sibling::span";
 		String[] months = {"January","February","March", "April"};		
-		Thread.sleep(2000);	
-		Custom_Dropdown_List_Multi_Item(parentXpath, dropdownXpath, months, "//*[@class='selected']");
-		Thread.sleep(2000);
+		sleepInSecond(2);
+		Select_Multi_Item_In_Dropdown(parentXpath, dropdownXpath, months, "//*[@class='selected']");
+		sleepInSecond(2);
 		driver.switchTo().defaultContent();
 	}
 	
-	public void Select__One_Item_In_Dropdown(String pageUrl, String parentXpath, String childXpath, String expectedItem) throws Exception {
+	public void Select_One_Item_In_Dropdown(String pageUrl, String parentXpath, String childXpath, String expectedItem) throws Exception {
 		driver.get(pageUrl);
 		driver.findElement(By.xpath(parentXpath)).click();
+		sleepInSecond(2);
 		List<WebElement> allItems = driver.findElements(By.xpath(childXpath));
 		System.out.println("Item number = " + allItems.size());
 		// Wait all items loaded successfully
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childXpath)));
-		for (WebElement childElement : allItems) {
-			if (childElement.getText().equals(expectedItem)) {
-				if (childElement.isDisplayed()) {
-					childElement.click();
-				} else {					
-					js.executeScript("arguments[0].scrollIntoView(true);", childElement);
-					Thread.sleep(1000);
-					js.executeScript("arguments[0].click();", childElement);
-				}
+		for (WebElement webElement : allItems) {
+			String itemText = webElement.getText();
+			if (itemText.equals(expectedItem)) {
+					webElement.click();
+					sleepInSecond(2);
 				break;
-				}
 			}
 		}
+	}
 		
-	public void Custom_Dropdown_List_Multi_Item(String parentXpath, String allItemXpath, String[] expectedValueItem, String itemsSelectedXpath) {
+	public void Select_Multi_Item_In_Dropdown(String parentXpath, String allItemXpath, String[] expectedValueItem, String itemsSelectedXpath) {
 		driver.findElement(By.xpath(parentXpath)).click();
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
 		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
@@ -88,6 +91,27 @@ public class Topic_08_Part_II_Custom_Dropdown_List {
 				}
 			}
 		}
+	public void sleepInSecond(long timeout) {
+		try {
+			Thread.sleep(timeout * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean isElementDisplayed(String xpathLocator) {
+		if(driver.findElement(By.xpath(xpathLocator)).isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public String getTextByJS(String cssLocator) {
+		String text = (String) jsExecutor.executeScript("return document.querySelector(\"" + cssLocator + "\").textContent");
+		System.out.println("Text = " + text);
+		return text;
+	}
 
 	@AfterClass
 	public void afterClass() {

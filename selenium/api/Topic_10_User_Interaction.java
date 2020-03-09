@@ -123,13 +123,7 @@ public class Topic_10_User_Interaction {
 	
 	@Test
 	public void TC_07_Drag_And_Drop_HTML5() {
-		driver.get("http://the-internet.herokuapp.com/drag_and_drop");
-		String sourceCss = "#column-a";
-		String targetCss = "#column-b";
-		String java_script = readFile(javascriptPath);
 		
-		
-
 	}
 	
 	public void sleepInSecond(long timeout) {
