@@ -39,53 +39,55 @@ public class Topic_09_Button_Radio_Checkbox_Alert {
 	@Test
 	public void TC_02_Default_Checkbox_Radio() {
 		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
-		WebElement cbDual = driver.findElement(By.xpath("//input[@id='eq5']"));
-		cbDual.click();
-		Assert.assertTrue(cbDual.isSelected());
-		if (cbDual.isSelected()) {
-			cbDual.click();
-		}
-		Assert.assertTrue(!cbDual.isSelected());
+		WebElement dualZoneCheckbox = driver.findElement(By.xpath("//input[@id='eq5']"));
+		dualZoneCheckbox.click();
+		Assert.assertTrue(dualZoneCheckbox.isSelected());
+		dualZoneCheckbox.click();
+		Assert.assertFalse(dualZoneCheckbox.isSelected());
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
-		WebElement radPetrol = driver.findElement(By.xpath("//input[@id='engine3']"));
-		radPetrol.click();
-		if (!radPetrol.isSelected()) {
-			radPetrol.click();
+		WebElement petrolRadio = driver.findElement(By.xpath("//input[@id='engine3']"));
+		petrolRadio.click();
+		Assert.assertTrue(petrolRadio.isSelected());
+		if (petrolRadio.isSelected()) {
+			System.out.println("Petro Radio is Selected");
+		}else {
+			System.out.println("Petro Radio is Un-Selected");
+			petrolRadio.click();
+			Assert.assertTrue(petrolRadio.isSelected());
 		}
-		Assert.assertTrue(radPetrol.isSelected());
 	}
 
 	@Test
 	public void TC_03_Custom_Checkbox_Radio() {
 		driver.get("https://material.angular.io/components/radio/examples");
-		WebElement radSummer = driver.findElement(By.xpath("//input[@id='mat-radio-4-input']"));
-		clickElementByJS(radSummer);
-		Assert.assertTrue(radSummer.isSelected());
-		if (!radSummer.isSelected()) {
-			radSummer.click();
+		WebElement summerRadio = driver.findElement(By.xpath("//input[@id='mat-radio-4-input']"));
+		clickElementByJS(summerRadio);
+		Assert.assertTrue(summerRadio.isSelected());
+		if (summerRadio.isSelected()) {
+			System.out.println("Summer Radio is Selected");
+		}else {
+			System.out.println("Summer Radio is Un-Selected");
+			summerRadio.click();
+			Assert.assertTrue(summerRadio.isSelected());
 		}		
 		driver.get("https://material.angular.io/components/checkbox/examples");
-		WebElement cbChecked = driver.findElement(By.xpath("//input[@id='mat-checkbox-1-input']"));
-		WebElement cbIndeterminate = driver.findElement(By.xpath("//input[@id='mat-checkbox-2-input']"));
-		cbChecked.click();
-		cbIndeterminate.click();
-		Assert.assertTrue(cbChecked.isSelected());
-		Assert.assertTrue(cbIndeterminate.isSelected());
-		if (cbChecked.isSelected()) {
-			cbChecked.click();
-		}
-		Assert.assertTrue(!cbChecked.isSelected());
-		if (cbIndeterminate.isSelected()) {
-			cbIndeterminate.click();
-		}
-		Assert.assertTrue(!cbIndeterminate.isSelected());
+		WebElement checkedCheckbox = driver.findElement(By.xpath("//input[@id='mat-checkbox-1-input']"));
+		WebElement indeterminateCheckbox = driver.findElement(By.xpath("//input[@id='mat-checkbox-2-input']"));
+		checkedCheckbox.click();
+		indeterminateCheckbox.click();
+		Assert.assertTrue(checkedCheckbox.isSelected());
+		Assert.assertTrue(indeterminateCheckbox.isSelected());
+		checkedCheckbox.click();
+		indeterminateCheckbox.click();
+		Assert.assertFalse(checkedCheckbox.isSelected());
+		Assert.assertFalse(indeterminateCheckbox.isSelected());
 	}
 	
 	@Test
 	public void TC_04_Accept_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
-		WebElement btnJS = driver.findElement(By.xpath("//button[text()='Click for JS Alert']"));
-		btnJS.click();
+		WebElement clickForJSAlertAlert = driver.findElement(By.xpath("//button[text()='Click for JS Alert']"));
+		clickForJSAlertAlert.click();
 		Alert alert = driver.switchTo().alert();
 		String textOnAlert = alert.getText();
 		Assert.assertEquals("I am a JS Alert", textOnAlert);
@@ -96,8 +98,8 @@ public class Topic_09_Button_Radio_Checkbox_Alert {
 	@Test
 	public void TC_05_Confirm_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
-		WebElement btnJS = driver.findElement(By.xpath("//button[text()='Click for JS Confirm']"));
-		btnJS.click();
+		WebElement clickForJSConfirmAlert = driver.findElement(By.xpath("//button[text()='Click for JS Confirm']"));
+		clickForJSConfirmAlert.click();
 		Alert alert = driver.switchTo().alert();
 		String textOnAlert = alert.getText();
 		Assert.assertEquals("I am a JS Confirm", textOnAlert);
@@ -108,41 +110,27 @@ public class Topic_09_Button_Radio_Checkbox_Alert {
 	@Test
 	public void TC_06_Prompt_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
-		WebElement btnJS = driver.findElement(By.xpath("//button[text()='Click for JS Prompt']"));
-		btnJS.click();
+		WebElement clickForJSPromptAlert = driver.findElement(By.xpath("//button[text()='Click for JS Prompt']"));
+		clickForJSPromptAlert.click();
 		Alert alert = driver.switchTo().alert();
 		String textOnAlert = alert.getText();
 		Assert.assertEquals("I am a JS prompt", textOnAlert);
-		String txtAlert = "TrungCr";
-		alert.sendKeys(txtAlert);
+		String text = "I am Thanh";
+		alert.sendKeys(text);
 		alert.accept();
-		Assert.assertEquals(driver.findElement(By.xpath("//p[@id='result']")).getText(), "You entered: " +txtAlert);
+		Assert.assertEquals(driver.findElement(By.xpath("//p[@id='result']")).getText(), "You entered: " + text);
 	}
 	
 	@Test
-	public void TC_07() {
-		String usernamepass = "admin";
-		driver.get("http://the-internet.herokuapp.com");
-		String url = driver.findElement(By.xpath("//a[text()='Basic Auth']")).getAttribute("href");
-		driver.get(byPassAuthenticationAlert(url, usernamepass, usernamepass));
+	public void TC_07_Authentication_Alert() {
+		String username = "admin";
+		String password = "admin";
+		driver.get("http://"+ username + ":"+ password + "@" +"the-internet.herokuapp.com/basic_auth");
 		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(), 'Congratulations! You must have the proper credentials.')]")).isDisplayed());
-	}
-	
-	@Test
-	public void TC_08() {
-
 	}
 	
 	public void clickElementByJS (WebElement element) {
 		jsExecutor.executeScript("arguments[0].click()", element);
-	}
-	
-	public String byPassAuthenticationAlert(String url, String username, String pass) {
-		System.out.println("Old url= " + url);
-		String[] splitUrl = url.split("//");
-		url = splitUrl[0] + "//" + username + ":" + pass + "@" + splitUrl[1];
-		System.out.println("New url = " + url);
-		return url;
 	}
 
 	@AfterClass
