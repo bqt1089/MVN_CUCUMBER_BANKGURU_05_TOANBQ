@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+  stages {
+    stage('01-Get Code') {
+      steps {
+        git(url: 'https://github.com/bqt1089/MVN_CUCUMBER_BANKGURU_05_TOANBQ', branch: 'master')
+      }
+    }
+    stage('02-Clean') {
+      steps {
+        bat 'mvn clean'
+      }
+    }
+    stage('03-Run Test') {
+      steps {
+        bat 'mvn verify'
+      }
+    }
+    stage('04-Publish report') {
+      steps {
+        cucumber '**/*.json'
+      }
+    }
+  }
+}
