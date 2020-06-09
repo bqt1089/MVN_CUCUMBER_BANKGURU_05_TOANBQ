@@ -7,7 +7,7 @@
     <name>MAVEN_PROJECT</name>
 
     <properties>
-        <jackson>2.9.7</jackson>
+        <jackson>2.11.0</jackson>
     </properties>
 
     <dependencies>
