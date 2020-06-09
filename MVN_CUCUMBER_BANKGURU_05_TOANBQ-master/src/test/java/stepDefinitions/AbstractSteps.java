@@ -11,6 +11,7 @@ import cucumberConfig.Hooks;
 import interfaces.LoginPageUI;
 import interfaces.RegisterPageUI;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class AbstractSteps {
     WebDriver driver;
@@ -136,7 +137,7 @@ public class AbstractSteps {
 
     @Then("^I verify \"([^\"]*)\" error with text \"([^\"]*)\" display$")
     public void iVerifyErrorWithTextDisplay(String locatorValue, String errorText) {
-        abstractTest.verifyTrue(abstractPageObject.isDynamicErrorTextField(driver, errorText, locatorValue));
+        Assert.assertTrue(abstractPageObject.isDynamicErrorTextField(driver, errorText, locatorValue));
     }
 
     //Wait

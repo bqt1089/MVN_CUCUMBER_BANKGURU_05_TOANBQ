@@ -28,7 +28,7 @@ Feature: Validation in New Customer page
     Then I verify "message" error with text "<Error Text>" display
     Examples:
       | Data     | Error Text              |
-      | 1234     | Numbers are not allowed |
+      | 1234     | Numbers are not allowedd |
       | name1234 | Numbers are not allowed |
 
   @TC_03_NameCannotHaveSpecialChars
