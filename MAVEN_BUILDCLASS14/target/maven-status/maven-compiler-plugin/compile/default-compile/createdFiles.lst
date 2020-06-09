@@ -1,0 +1,8 @@
+commons/PageFatoryManager.class
+pageObjects/LoginPageObject.class
+commons/DriverType.class
+commons/AbstractPage.class
+commons/VerificationFailures.class
+commons/AbstractTest.class
+interfaces/LoginPageUI.class
+commons/MethodListener.class
